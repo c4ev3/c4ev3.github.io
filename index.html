@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>C4ev3.GitHub.io by c4ev3</title>
+    <title>c4ev3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,39 +11,93 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">C4ev3.GitHub.io</h1>
-      <h2 class="project-tagline">A responsive theme for GitHub Pages</h2>
+      <h1 class="project-name">c4ev3</h1>
+      <h2 class="project-tagline">Native C/C++ Programming for the LEGO® EV3</h2>
+      <a href="#" class="btn">Windows Installer (110MiB)</a>
+      <a href="#" class="btn">Windows Installer (No GCC: 1MiB)</a>
+      <a href="#manual-install" class="btn">Build from source</a>
     </section>
+    <a href="https://github.com/c4ev3"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
     <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+<p>c4ev3 is a software package for programming stock-firmware LEGO® Mindstorms® EV3 in C/C++. The package contains a <a href="#">C API</a> that exposes the hardware capabilities of the device, an <a href="#">uploader</a> able to transmit the compiled binaries over WiFi/Bluetooth/USB and an <a href="#">Eclipse Plugin</a> that integrates the two components into an easy-to-use development environment.</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="how-to-use" class="anchor" href="#howtouse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h3>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<p>
+<ul>
+    <li>Just run the c4ev3 installer. It includes the ARM GCC toolchain, Eclipse plugin and all the needed library headers and files. A (110MiB lighter) <a href="#">version without the Compiler toolchain</a> is also available.</li>
+    <li>In Eclipse, <i>File → New → Project</i>.</li>
+    <li>Choose Project type as <i>"Hello World EV3 Project"</i> and <i>"Cross ARM/EV3 GCC"</i> as the toolchain.</li>
+    <li>Project is ready for upload and execution over the <i>EV3 → Upload and run</i> menu entry.</li>
+    <li>If you want to stat the executable later again, you can find it on the EV3 under <i>SD_Card/myapps/</i></li>
+    <li>...</li>
+    <li>Happy programming! </li>
+</ul>
+</p>
+<hr>
+<h3>
+    <a id="manual-install" class="anchor" href="#manual-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manual Installation</h3>
+
+<h4>The Toolchain</h4>
+
+<p>In order to compile C/C++ applications you will need the <code>arm-none-linux-gnueabi</code> or <code>arm-linux-gnueabi</code> GCC (Both are the same thing). The <i>symlink_cross.sh</i> script with the ev3duder can be used to symlink the latter to the former.</p>
+
+<ul>
+    <li>Windows users can get it via the <a href="https://sourcery.mentor.com/GNUToolchain/package4574/public/arm-none-linux-gnueabi/arm-2009q1-203-arm-none-linux-gnueabi.exe ">CodeSourcery Lite package</a>.</li>  
+    <li>Debian/Ubuntu's repositories offer the Linaro toolchain, but I couldn't get that to work. CodeSourcery to the rescue again: <br>
+<pre>$ wget -c http://www.codesourcery.com/sgpp/lite/arm/portal/package4571/public/arm-none-linux-gnueabi/arm-2009q1-203-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
+$ mkdir CodeSourcery $ tar -jxvf ~/arm-2009q1-203-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2 -C ~/CodeSourcery/
+$ echo export PATH=~/CodeSourcery/arm-2009q1/bin/:$PATH >> ~/.bashrc && . ~/.bashrc </pre></li>
+<li>Carlson-Minot Inc. provides binary builds of <a href="http://www.carlson-minot.com/available-arm-gnu-linux-g-lite-builds-for-mac-os-x">CodeSourcery's GNU/ARM toolchain for OS X</a>.</li>
+</ul>
+
+<p>If not done by the installer, you will additionally need to add the compiler to the <i>PATH</i>.</p>
+
+To write somewhat useful programs, you'll want to link against the <a href="#">Sensor/Actor API</a>, which can be built by a simple <code>$ make</code>.
+
+<h4>The Uploader</h4>
+<p>
+The uploader requires a gnu99 compatible compiler, that is GCC 3.2 and above or compatible compilers. Any recent version of gcc, clang or icc should be able to compile it. MS Visual C++ isn't supported, due to the use of C99 features and GNU extensions. Also required is GNU Make.
+</p>
+<p>You can get the source with <a href="http://git-scm.com">git</a>:
+<pre>$ git clone --recursive https://github.com/a3f/ev3duder</pre>
+If you haven't got git, you will have to download these seperately: <code>https://github.com/a3f/ev3duder/archive/master.zip</code> and <code>https://github.com/signal11/hidapi/archive/master.zip</code> then unpack the hidapi archive into the hidapi directory of the ev3duder extraction path.</p>
+
+<p>Building is an easy
+
+<pre>$ make</pre>
+
+On Linux, you additionally need <i>libusb-1.0</i> to be installed. On Ubuntu and other Debian-based system this can be done via <code>$ sudo apt-get install libusb1.0.0-dev</code>. Also to allow access to the ev3 over USB without requiring root, appropriate udev rules must be created. This can be easily done with <code>$ make install</code>.</p>
+
+<p>The <i>test/</i> directory contains some sample projects that do stuff on the EV3. <code>perl flash.pl Test_Motors</code> uploads and executes the <i>Test_Motors</i> project.
+
+
+
+<h4>The Eclipse Plugin</h4>
+<p>The plugin is packaged as a <a href="#">single <i>.jar</i> file</a>, which just needs to be dropped into the <i>Eclipse/Dropins</i> directory.</p>
+<p>Alternatively, change Eclipse's Workspace to the Plugin's source directory and build it yourself.</p>
+<hr>
+<h3>
+    <a id="acknowledgement" class="anchor" href="#acknowledgement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgements</h3>
+
+<p> This project was originally written for use in the teaching of Informatics at the <a href="http://h-ab.de">Hochschule Aschaffenburg</a>.</p>
+<p>The work is part of the <a href="http://www.evelinprojekt.de/en/">EVELIN</a> project, which is funded by the German Federal Ministry of Education and Research (Bundesministerium für Bildung und Forschung) under grant number 01PL12022B.
+</p>
+<p>The authors are solely responsible for the content of this publication.</p>
+
+<p> In agreement with the University, The project's components are released under their respective open source licenses.<p>
 
 <h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
+<a id="contrib-or-support" class="anchor" href="contrib-or-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribution or Contact</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>Feel free to open a bug report or pull request! :-)</p>
 
       <footer class="site-footer">
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+        <span class="site-footer-credits">This page uses the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
 
     </section>
