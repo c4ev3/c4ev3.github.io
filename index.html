@@ -21,7 +21,7 @@
 
     <section class="main-content">
 
-        <p>c4ev3 is a software package for programming stock-firmware LEGO® Mindstorms® EV3 in C/C++. The package contains a <a href="#">C API</a> that exposes the hardware capabilities of the device, an <a href="#">uploader</a> able to transmit the compiled binaries over WiFi/Bluetooth/USB and an <a href="#">Eclipse Plugin</a> that integrates the two components into an easy-to-use development environment.<br> Binaries only provided for Windows. Source build works on Windows (MinGW), Linux and Mac OS X.</p>
+        <p>c4ev3 is a software package for programming stock-firmware LEGO® Mindstorms® EV3 in C/C++. The package contains a <a href="https://github.com/c4ev3/EV3-API">C API</a> that exposes the hardware capabilities of the device, an <a href="https://github.com/c4ev3/ev3duder">uploader</a> able to transmit the compiled binaries over WiFi/Bluetooth/USB and an <a href="https://github.com/c4ev3/EV3-Eclipse-Plugin">Eclipse Plugin</a> that integrates the two components into an easy-to-use development environment.<br> Binaries only provided for Windows. Source build works on Windows (MinGW), Linux and Mac OS X.</p>
 
 <h3>
 <a id="how-to-use" class="anchor" href="#howtouse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h3>
@@ -56,15 +56,15 @@ $ echo export PATH=~/CodeSourcery/arm-2009q1/bin/:$PATH >> ~/.bashrc && . ~/.bas
 
 <p>If not done by the installer, you will additionally need to add the compiler to the <i>PATH</i>.</p>
 
-To write somewhat useful programs, you'll want to link against the <a href="#">Sensor/Actor API</a>, which can be built by a simple <code>$ make</code>.
+To write somewhat useful programs, you'll want to link against the <a href="https://github.com/c4ev3/EV3-API">Sensor/Actor API</a>, which can be built by a simple <code>$ make</code>.
 
 <h4>The Uploader</h4>
 <p>
 The uploader requires a gnu99 compatible compiler, that is GCC 3.2 and above or compatible compilers. Any recent version of gcc, clang or icc should be able to compile it. MS Visual C++ isn't supported, due to the use of C99 features and GNU extensions. Also required is GNU Make.
 </p>
 <p>You can get the source with <a href="http://git-scm.com">git</a>:
-<pre>$ git clone --recursive https://github.com/a3f/ev3duder</pre>
-If you haven't got git, you will have to download these seperately: <code>https://github.com/a3f/ev3duder/archive/master.zip</code> and <code>https://github.com/signal11/hidapi/archive/master.zip</code> then unpack the hidapi archive into the hidapi directory of the ev3duder extraction path.</p>
+<pre>$ git clone --recursive https://github.com/c4ev3/ev3duder</pre>
+If you haven't got git, you will have to download these seperately: <code>https://github.com/c4ev3/ev3duder/archive/master.zip</code> and <code>https://github.com/signal11/hidapi/archive/master.zip</code> then unpack the hidapi archive into the hidapi directory of the ev3duder extraction path.</p>
 
 <p>Building is an easy
 
@@ -77,7 +77,7 @@ On Linux, you additionally need <i>libusb-1.0</i> to be installed. On Ubuntu and
 
 
 <h4>The Eclipse Plugin</h4>
-<p>The plugin is packaged as a <a href="#">single <i>.jar</i> file</a>, which just needs to be dropped into the <i>Eclipse/Dropins</i> directory.</p>
+<p>The plugin is packaged as a <a href="https://github.com/c4ev3/EV3-Eclipse-Plugin/releases">single <i>.jar</i> file</a>, which just needs to be dropped into the <i>Eclipse/Dropins</i> directory.</p>
 <p>Alternatively, change Eclipse's Workspace to the Plugin's source directory and build it yourself.</p>
 <hr>
 <h3>
