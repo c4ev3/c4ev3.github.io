@@ -87,7 +87,7 @@ If you haven't got git, you will have to download these seperately: <code>https:
 
 <pre>$ make</pre>
 
-On Linux, you additionally need <i>libudev-dev</i> to be installed. On Ubuntu and other Debian-based system this can be done via <code>$ sudo apt-get install libudev-dev</code>. Also to allow access to the ev3 over USB without requiring root, appropriate udev rules must be created. This can be easily done with <code>$ make install</code>.</p>
+On Linux, you additionally need <i>libudev-dev</i> and <i>pkg-config</i> to be installed. On Ubuntu and other Debian-based system this can be done via <code>$ sudo apt-get install libudev-dev pkg-config</code>. Also to allow access to the ev3 over USB without requiring root, appropriate udev rules must be created. This can be easily done with <code>$ make install</code>.</p>
 
 <p>The <i>test/</i> directory contains some sample projects that do stuff on the EV3. <code>perl flash.pl Test_Motors</code> uploads and executes the <i>Test_Motors</i> project.
 
